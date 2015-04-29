@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+   echo "Usage: $0 CLASSNAME"
+   exit 1
+fi
+
+CLASS_NAME=$1
+CLASS_FILE=$(find . -name $CLASS_NAME.class)
+
+if [ -z "$CLASS_FILE" ]; then
+   echo "Error: No class file for $CLASS_NAME found"
+   exit 1
+fi
+
+CLASS_PATH=$(dirname $CLASS_FILE)
+CMD="java -classpath $CLASS_PATH $CLASS_NAME"
+echo $CMD
